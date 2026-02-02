@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bujji ❤️ Harsha</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ffe3ec,#fff7ef);
+  color:#4a3b3b;
+  text-align:center;
+  overflow-x:hidden;
+}
+.card{
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  margin:20px auto;
+  max-width:850px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+h1,h2{color:#ff6f91;}
+button{
+  padding:12px 26px;
+  border:none;
+  border-radius:25px;
+  font-size:18px;
+  margin:10px;
+  cursor:pointer;
+}
+.yes{background:#ff6f91;color:white;}
+.no{background:#ddd;}
+.envelope{
+  background:#ffd6e5;
+  padding:20px;
+  border-radius:15px;
+  cursor:pointer;
+}
+.letter{
+  display:none;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-top:12px;
+  text-align:left;
+  line-height:1.8;
+}
+.photo{margin:15px 0;}
+.photo img{width:100%;border-radius:14px;}
+footer{margin:30px 0;opacity:0.7;}
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-100vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_48b1d2cdb7.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>❤️ Bujji, Will You Be My Valentine? ❤️</h1>
+  <p>Cute + fun ga, naa full heart tho chesina website idi 😄</p>
+  <button class="yes" onclick="yesClicked()">YES 💕</button>
+  <button class="no" id="noBtn" onmouseover="runAway()">NO 😜</button>
+</div>
+
+<div class="card">
+  <h2>💌 From My Heart</h2>
+  <div class="envelope" onclick="openLetter()">Tap cheyyi Bujji ✉️
+    <div class="letter" id="letter">
+      <p>
+        <b>I love you forever and ever ❤️</b><br>
+        Thanks for everything 🥹<br><br>
+
+        Nela raajuni ila raanini<br>
+        Kalipindhikada siri vennela ✨<br><br>
+
+        Doorama doorama theeramai cheruma<br>
+        Nadirathirilo theralu therachi<br>
+        Nadhi nidduralo magatha marachi 🌙<br><br>
+
+        Udayinchinadaa kuluku loluku<br>
+        Cheli modati kala 💖<br><br>
+
+        Thana navvulalo thaluku thaluku<br>
+        Thana champalalo chamaku chamaku<br>
+        Thana muvvalalo jhanaku jhanaku 💫<br><br>
+
+        Ee lines anni ninnu choodagaane gurthostayi.<br>
+        Naa prathi kalalo nuvve Bujji 💕<br><br>
+
+        <b>— Harsha</b>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🐱🐉 Mana Cute Moments</h2>
+
+  <div class="photo">
+    <img src="https://placekitten.com/420/260">
+    <p>🐱 Cute cat — Just like you when you act angry but look adorable 😜</p>
+  </div>
+
+  <div class="photo">
+    <img src="https://placekitten.com/421/260">
+    <p>🐱 Soft & warm — exactly how your presence feels ❤️</p>
+  </div>
+
+  <div class="photo">
+    <img src="https://picsum.photos/seed/dragon1/420/260">
+    <p>🐉 Tiny dragon — cute outside, fire inside 😅</p>
+  </div>
+
+  <div class="photo">
+    <img src="https://picsum.photos/seed/dragon2/420/260">
+    <p>
+      💌 I have images of YOU…<br>
+      but they are too precious to make public 😌❤️<br>
+      Only my heart has access.
+    </p>
+  </div>
+</div>
+
+<footer>
+  Made with endless love by Harsha ❤️
+</footer>
+
+<script>
+function openLetter(){
+  let l=document.getElementById("letter");
+  l.style.display=l.style.display==="block"?"none":"block";
+}
+function runAway(){
+  let b=document.getElementById("noBtn");
+  b.style.position="relative";
+  b.style.left=Math.random()*140-70+"px";
+}
+function yesClicked(){
+  document.getElementById("bgm").play();
+  for(let i=0;i<30;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+  alert("Yayyy 💕 Forever and ever Bujji 😍");
+}
+</script>
+
+</body>
+</html>
