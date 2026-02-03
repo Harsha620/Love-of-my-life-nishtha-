@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hey Bujji ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI',Arial,sans-serif;
+  color:#fff;
+}
+
+/* ---------- BACKGROUNDS ---------- */
+.bg1{background:radial-gradient(circle,#2b0a1f,#0b0b14);}
+.bg2{background:linear-gradient(135deg,#ff9a9e,#fad0c4);}
+.bg3{background:radial-gradient(circle,#1a1a2e,#0f0c29);}
+.bg4{background:linear-gradient(135deg,#ffdde1,#ee9ca7);}
+.bg5{background:linear-gradient(135deg,#232526,#414345);}
+.bg6{background:radial-gradient(circle,#ff512f,#dd2476);}
+
+/* ---------- SECTIONS ---------- */
+.section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  box-sizing:border-box;
+  transition:all .6s ease;
+}
+
+/* ---------- CARD ---------- */
+.card{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(12px);
+  border-radius:24px;
+  padding:30px;
+  max-width:420px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+
+h1,h2{color:#fff;}
+button{
+  padding:12px 28px;
+  border:none;
+  border-radius:999px;
+  font-size:16px;
+  margin:10px;
+  cursor:pointer;
+}
+.yes{background:#ff4d88;color:white;}
+.no{background:#333;color:white;position:relative;}
+
+.hidden{display:none;}
+
+/* ---------- HEARTS ---------- */
+.heart{
+  position:fixed;
+  bottom:-30px;
+  font-size:22px;
+  animation:float 5s linear;
+}
+@keyframes float{
+  to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* ---------- CONFETTI ---------- */
+.confetti{
+  position:fixed;
+  top:-10px;
+  font-size:18px;
+  animation:fall 4s linear;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+
+/* ---------- HUG ---------- */
+.hug{
+  font-size:64px;
+  animation:beat 1.5s infinite;
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  30%{transform:scale(1.12);}
+  60%{transform:scale(1);}
+}
+
+/* scroll */
+.scroll{max-height:75vh;overflow-y:auto;}
+.line{text-align:left;margin:14px 0;}
+.telugu{font-weight:bold;}
+.english{font-size:13px;opacity:.8;}
+</style>
+</head>
+
+<body class="bg1">
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- S1 -->
+<div class="section" id="s1">
+  <div class="card">
+    <h1>Hey Bujji 💖</h1>
+    <p>Will you be my Valentine?</p>
+    <button class="yes" onclick="firstYes()">YES</button>
+    <button class="no" id="noBtn">NO</button>
+    <p style="opacity:.7">No is naughty 😈</p>
+  </div>
+</div>
+
+<!-- S2 -->
+<div class="section hidden bg2" id="s2">
+  <div class="card">
+    <h2>I knew you would do this 😌</h2>
+    <button class="yes" onclick="next()">Continue ❤️</button>
+  </div>
+</div>
+
+<!-- S3 SONG -->
+<div class="section hidden bg3" id="s3">
+  <div class="card scroll">
+    <h2>🎵 A Song From My Heart</h2>
+
+    <div class="line"><div class="telugu">I love you forever and ever</div><div class="english">My love for you has no end.</div></div>
+    <div class="line"><div class="telugu">Nela raajuni ila raanini</div><div class="english">Destiny brought two hearts together.</div></div>
+    <div class="line"><div class="telugu">Cheli modati kala</div><div class="english">You are my very first dream.</div></div>
+
+    <button class="yes" onclick="next()">Continue ❤️</button>
+  </div>
+</div>
+
+<!-- S4 LETTER -->
+<div class="section hidden bg4" id="s4">
+  <div class="card">
+    <h2>💌 From My Heart</h2>
+    <p style="font-size:18px;line-height:1.7">
+      Thank you for choosing me.<br>
+      Thank you for being you.<br><br>
+      I promise to love you,<br>
+      now and always.
+    </p>
+    <div class="hug">🤗</div>
+    <h2>I love you — Harsha</h2>
+    <button class="yes" onclick="next()">Continue ❤️</button>
+  </div>
+</div>
+
+<!-- S5 FINAL CHOICE -->
+<div class="section hidden bg5" id="s5">
+  <div class="card">
+    <h2>I love you ❤️</h2>
+    <p>If you want to continue…</p>
+    <button class="yes" onclick="finalYes()">YES 💖</button>
+    <button class="no" onclick="finalNo()">NO 🙂</button>
+    <p id="finalMsg"></p>
+  </div>
+</div>
+
+<!-- S6 CELEBRATION -->
+<div class="section hidden bg6" id="s6">
+  <div class="card">
+    <h1>🎉 Congrats 🎉</h1>
+    <h2>You won me for a lifetime 💖</h2>
+    <h1>DRAGONNNNN 🐉🔥</h1>
+  </div>
+</div>
+
+<script>
+let step=1;
+const body=document.body;
+const music=document.getElementById("bgm");
+
+/* NO runs away */
+const noBtn=document.getElementById("noBtn");
+function moveNo(){
+  noBtn.style.left=(Math.random()*120-60)+"px";
+  noBtn.style.top=(Math.random()*60-30)+"px";
+}
+noBtn.addEventListener("mouseenter",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+
+/* hearts */
+function hearts(n=12){
+  for(let i=0;i<n;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+/* confetti */
+function confetti(){
+  for(let i=0;i<30;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.innerHTML="🎉";
+    c.style.left=Math.random()*100+"vw";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+
+/* show */
+function show(id,bg){
+  document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+  body.className=bg;
+}
+
+/* actions */
+function firstYes(){
+  music.volume=0.5;
+  music.play();
+  hearts();
+  show("s2","bg2");
+  step=2;
+}
+
+function next(){
+  hearts();
+  if(step===2){show("s3","bg3");step=3;}
+  else if(step===3){show("s4","bg4");step=4;}
+  else if(step===4){show("s5","bg5");step=5;}
+}
+
+function finalYes(){
+  show("s6","bg6");
+  confetti();
+  hearts(20);
+}
+
+function finalNo(){
+  document.getElementById("finalMsg").innerText=
+    "You already know my room number 😄";
+  hearts(8);
+}
+</script>
+
+</body>
+</html>
