@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forever ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', Arial, sans-serif;
+  background:radial-gradient(circle at top,#2b0a1f,#0b0b14);
+  color:#fff;
+}
+
+/* full screen sections */
+.section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+/* card */
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  padding:30px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* song card scroll */
+.scroll{
+  max-height:80vh;
+  overflow-y:auto;
+}
+
+h1,h2{color:#ff8fb1;}
+button{
+  padding:12px 26px;
+  border:none;
+  border-radius:999px;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+}
+.yes{background:#ff4d88;color:white;}
+.no{background:#444;color:white;position:relative;}
+.small{opacity:.7;font-size:13px;}
+
+.line{text-align:left;margin:14px 0;}
+.telugu{font-weight:bold;font-size:17px;}
+.english{font-size:13px;opacity:.75;margin-top:4px;}
+
+/* floating hearts */
+.heart{
+  position:fixed;
+  bottom:-30px;
+  font-size:22px;
+  animation:floatUp 5s linear;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* hug heartbeat */
+.hug{
+  font-size:60px;
+  animation:beat 1.6s infinite;
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  30%{transform:scale(1.12);}
+  60%{transform:scale(1);}
+}
+
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<!-- YOUR MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+  <div class="card">
+    <h1>Will you be my Valentine? ❤️</h1>
+    <button class="yes" onclick="next()">YES</button>
+    <button class="no" id="noBtn">NO</button>
+    <p class="small">No is naughty 😈</p>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section hidden" id="s2">
+  <div class="card">
+    <h2>I knew you would do this 😌</h2>
+    <button class="yes" onclick="next()">Still things are there →</button>
+  </div>
+</div>
+
+<!-- SECTION 3 SONG -->
+<div class="section hidden" id="s3">
+  <div class="card scroll">
+    <h2>🎵 A Song From My Heart</h2>
+
+    <div class="line"><div class="telugu">I love you forever and ever</div><div class="english">My love for you has no end.</div></div>
+    <div class="line"><div class="telugu">Thanks for everything</div><div class="english">Thank you for being my strength.</div></div>
+    <div class="line"><div class="telugu">Nela raajuni ila raanini</div><div class="english">Destiny brought two hearts together.</div></div>
+    <div class="line"><div class="telugu">Kalipindhikada siri vennela</div><div class="english">Fortune and moonlight united us.</div></div>
+    <div class="line"><div class="telugu">Doorama doorama theeramai cheruma</div><div class="english">All distance fades when hearts meet.</div></div>
+    <div class="line"><div class="telugu">Nadirathirilo theralu therachi</div><div class="english">Dreams awaken in deep night.</div></div>
+    <div class="line"><div class="telugu">Nadhi nidduralo magatha marachi</div><div class="english">Sleep forgets itself in love.</div></div>
+    <div class="line"><div class="telugu">Udayinchinadaa kuluku loluku</div><div class="english">A soft sunrise of emotions.</div></div>
+    <div class="line"><div class="telugu">Cheli modati kala</div><div class="english">You are my first dream.</div></div>
+    <div class="line"><div class="telugu">Thana navvulalo thaluku thaluku</div><div class="english">Her smile sparkles.</div></div>
+    <div class="line"><div class="telugu">Thana champalalo chamaku chamaku</div><div class="english">Her cheeks glow with warmth.</div></div>
+    <div class="line"><div class="telugu">Thana muvvalalo jhanaku jhanaku</div><div class="english">Her presence is music.</div></div>
+
+    <button class="yes" onclick="next()">Continue ❤️</button>
+  </div>
+</div>
+
+<!-- SECTION 4 LETTER -->
+<div class="section hidden" id="s4">
+  <div class="card">
+    <h2>💌 From My Heart</h2>
+    <p style="font-size:18px;line-height:1.8">
+      Thank you for choosing me.<br>
+      Thank you for being you.<br><br>
+      I promise to love you,<br>
+      now and always.
+    </p>
+    <div class="hug">🤗</div>
+    <h2>I love you<br>— Harsha</h2>
+    <button class="yes" onclick="next()">Continue ❤️</button>
+  </div>
+</div>
+
+<!-- SECTION 5 FINAL -->
+<div class="section hidden" id="s5">
+  <div class="card">
+    <h2>I love you ❤️</h2>
+    <p>If you want to continue…</p>
+
+    <button class="yes" onclick="finalYes()">YES 💖</button>
+    <button class="no" onclick="finalNo()">NO 🙂</button>
+
+    <p class="small" id="finalMsg"></p>
+  </div>
+</div>
+
+<script>
+let step=1;
+
+/* move NO button (mobile + desktop) */
+const noBtn=document.getElementById("noBtn");
+function moveNo(){
+  noBtn.style.left=(Math.random()*120-60)+"px";
+  noBtn.style.top=(Math.random()*60-30)+"px";
+}
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+/* floating hearts */
+function hearts(count=10){
+  for(let i=0;i<count;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+/* navigation */
+function next(){
+  hearts(12);
+
+  if(step===1){
+    let music=document.getElementById("bgm");
+    music.volume=0.5;
+    music.play();
+    show("s2");
+  }
+  else if(step===2){
+    show("s3");
+  }
+  else if(step===3){
+    show("s4");
+  }
+  else if(step===4){
+    show("s5");
+  }
+
+  step++;
+}
+
+function show(id){
+  document.getElementById("s"+(step)).classList.add("hidden");
+  document.getElementById(id).classList.remove("hidden");
+}
+
+/* final buttons */
+function finalYes(){
+  document.getElementById("finalMsg").innerHTML =
+    "You already know my number 📱💖";
+  hearts(20);
+}
+
+function finalNo(){
+  document.getElementById("finalMsg").innerHTML =
+    "You already know my room number 😄";
+  hearts(12);
+}
+</script>
+
+</body>
+</html>
