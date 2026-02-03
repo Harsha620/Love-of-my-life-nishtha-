@@ -208,10 +208,18 @@ function next(){
 
 }
 
-function show(id){
-  document.getElementById("s"+(step)).classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
+function finalYes(){
+  document.getElementById("finalMsg").innerHTML =
+    "You already know my number 📱💖";
+  hearts(20);
 }
+
+function finalNo(){
+  document.getElementById("finalMsg").innerHTML =
+    "You already know my room number 😄";
+  hearts(12);
+}
+
 </script>
 
 </body>
