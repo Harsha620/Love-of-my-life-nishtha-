@@ -148,6 +148,19 @@ button{
   </div>
 </div>
 
+  <!-- SECTION 5 : FINAL CHOICE -->
+<div class="section hidden" id="s5">
+  <div class="card">
+    <h2>I love you ❤️</h2>
+    <p>If you want to continue…</p>
+
+    <button class="yes" onclick="finalYes()">YES 💖</button>
+    <button class="no" onclick="finalNo()">NO 🙂</button>
+
+    <p class="small" id="finalMsg"></p>
+  </div>
+</div>
+
 <script>
 let step=1;
 
@@ -173,10 +186,26 @@ function hearts(count=8){
 /* navigation */
 function next(){
   hearts(12);
-  if(step===1){show("s2"); document.getElementById("bgm").play();}
-  if(step===2){show("s3");}
-  if(step===3){show("s4");}
+
+  if(step===1){
+    show("s2");
+  }
+
+  if(step===2){
+    show("s3");
+  }
+
+  if(step===3){
+    show("s4");
+  }
+
+  if(step===4){
+    show("s5");
+  }
+
   step++;
+}
+
 }
 
 function show(id){
