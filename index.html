@@ -11,9 +11,10 @@ html,body{
   padding:0;
   font-family:'Segoe UI',Arial,sans-serif;
   color:#fff;
+  overflow-x:hidden;
 }
 
-/* ---------- BACKGROUNDS ---------- */
+/* backgrounds */
 .bg1{background:radial-gradient(circle,#2b0a1f,#0b0b14);}
 .bg2{background:linear-gradient(135deg,#ff9a9e,#fad0c4);}
 .bg3{background:radial-gradient(circle,#1a1a2e,#0f0c29);}
@@ -21,7 +22,7 @@ html,body{
 .bg5{background:linear-gradient(135deg,#232526,#414345);}
 .bg6{background:radial-gradient(circle,#ff512f,#dd2476);}
 
-/* ---------- SECTIONS ---------- */
+/* sections */
 .section{
   min-height:100vh;
   display:flex;
@@ -29,10 +30,9 @@ html,body{
   align-items:center;
   padding:20px;
   box-sizing:border-box;
-  transition:all .6s ease;
+  transition:opacity .5s ease, transform .5s ease;
 }
 
-/* ---------- CARD ---------- */
 .card{
   background:rgba(255,255,255,.12);
   backdrop-filter:blur(12px);
@@ -44,7 +44,10 @@ html,body{
   box-shadow:0 20px 40px rgba(0,0,0,.4);
 }
 
+.hidden{display:none;}
+
 h1,h2{color:#fff;}
+
 button{
   padding:12px 28px;
   border:none;
@@ -56,9 +59,9 @@ button{
 .yes{background:#ff4d88;color:white;}
 .no{background:#333;color:white;position:relative;}
 
-.hidden{display:none;}
+.small{opacity:.7;font-size:13px;}
 
-/* ---------- HEARTS ---------- */
+/* hearts */
 .heart{
   position:fixed;
   bottom:-30px;
@@ -69,18 +72,16 @@ button{
   to{transform:translateY(-120vh);opacity:0;}
 }
 
-/* ---------- CONFETTI ---------- */
-.confetti{
-  position:fixed;
-  top:-10px;
-  font-size:18px;
-  animation:fall 4s linear;
+/* song scroll */
+.scroll{
+  max-height:80vh;
+  overflow-y:auto;
 }
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
-}
+.line{text-align:left;margin:14px 0;}
+.telugu{font-weight:bold;}
+.english{font-size:13px;opacity:.8;}
 
-/* ---------- HUG ---------- */
+/* hug */
 .hug{
   font-size:64px;
   animation:beat 1.5s infinite;
@@ -91,11 +92,16 @@ button{
   60%{transform:scale(1);}
 }
 
-/* scroll */
-.scroll{max-height:75vh;overflow-y:auto;}
-.line{text-align:left;margin:14px 0;}
-.telugu{font-weight:bold;}
-.english{font-size:13px;opacity:.8;}
+/* confetti */
+.confetti{
+  position:fixed;
+  top:-10px;
+  font-size:18px;
+  animation:fall 4s linear;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
 </style>
 </head>
 
@@ -112,7 +118,7 @@ button{
     <p>Will you be my Valentine?</p>
     <button class="yes" onclick="firstYes()">YES</button>
     <button class="no" id="noBtn">NO</button>
-    <p style="opacity:.7">No is naughty 😈</p>
+    <p class="small">No is naughty 😈</p>
   </div>
 </div>
 
@@ -120,7 +126,7 @@ button{
 <div class="section hidden bg2" id="s2">
   <div class="card">
     <h2>I knew you would do this 😌</h2>
-    <button class="yes" onclick="next()">Continue ❤️</button>
+    <button class="yes" onclick="goNext()">Continue ❤️</button>
   </div>
 </div>
 
@@ -130,10 +136,19 @@ button{
     <h2>🎵 A Song From My Heart</h2>
 
     <div class="line"><div class="telugu">I love you forever and ever</div><div class="english">My love for you has no end.</div></div>
-    <div class="line"><div class="telugu">Nela raajuni ila raanini</div><div class="english">Destiny brought two hearts together.</div></div>
+    <div class="line"><div class="telugu">Thanks for everything</div><div class="english">Thank you for being my strength.</div></div>
+    <div class="line"><div class="telugu">Nela raajuni ila raanini</div><div class="english">Destiny brought two souls together.</div></div>
+    <div class="line"><div class="telugu">Kalipindhikada siri vennela</div><div class="english">Fortune and moonlight united us.</div></div>
+    <div class="line"><div class="telugu">Doorama doorama theeramai cheruma</div><div class="english">All distance fades when hearts meet.</div></div>
+    <div class="line"><div class="telugu">Nadirathirilo theralu therachi</div><div class="english">Dreams awaken in deep night.</div></div>
+    <div class="line"><div class="telugu">Nadhi nidduralo magatha marachi</div><div class="english">Sleep forgets itself in love.</div></div>
+    <div class="line"><div class="telugu">Udayinchinadaa kuluku loluku</div><div class="english">A soft sunrise of emotions.</div></div>
     <div class="line"><div class="telugu">Cheli modati kala</div><div class="english">You are my very first dream.</div></div>
+    <div class="line"><div class="telugu">Thana navvulalo thaluku thaluku</div><div class="english">Her smile sparkles.</div></div>
+    <div class="line"><div class="telugu">Thana champalalo chamaku chamaku</div><div class="english">Her cheeks glow with warmth.</div></div>
+    <div class="line"><div class="telugu">Thana muvvalalo jhanaku jhanaku</div><div class="english">Her presence feels like music.</div></div>
 
-    <button class="yes" onclick="next()">Continue ❤️</button>
+    <button class="yes" onclick="goNext()">Continue ❤️</button>
   </div>
 </div>
 
@@ -149,11 +164,11 @@ button{
     </p>
     <div class="hug">🤗</div>
     <h2>I love you — Harsha</h2>
-    <button class="yes" onclick="next()">Continue ❤️</button>
+    <button class="yes" onclick="goNext()">Continue ❤️</button>
   </div>
 </div>
 
-<!-- S5 FINAL CHOICE -->
+<!-- S5 FINAL -->
 <div class="section hidden bg5" id="s5">
   <div class="card">
     <h2>I love you ❤️</h2>
@@ -169,12 +184,13 @@ button{
   <div class="card">
     <h1>🎉 Congrats 🎉</h1>
     <h2>You won me for a lifetime 💖</h2>
-    <h1>DRAGONNNNN 🐉🔥</h1>
+    <h1>DRAGONNN 🐉🔥</h1>
   </div>
 </div>
 
 <script>
-let step=1;
+let current=1;
+const total=6;
 const body=document.body;
 const music=document.getElementById("bgm");
 
@@ -211,35 +227,56 @@ function confetti(){
   }
 }
 
-/* show */
-function show(id,bg){
-  document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-  body.className=bg;
+/* show section */
+function show(n){
+  for(let i=1;i<=total;i++){
+    document.getElementById("s"+i).classList.add("hidden");
+  }
+  document.getElementById("s"+n).classList.remove("hidden");
+  body.className="bg"+n;
 }
 
-/* actions */
+/* navigation */
 function firstYes(){
   music.volume=0.5;
   music.play();
   hearts();
-  show("s2","bg2");
-  step=2;
+  current=2;
+  show(current);
 }
 
-function next(){
-  hearts();
-  if(step===2){show("s3","bg3");step=3;}
-  else if(step===3){show("s4","bg4");step=4;}
-  else if(step===4){show("s5","bg5");step=5;}
+function goNext(){
+  if(current<total){
+    hearts();
+    current++;
+    show(current);
+  }
 }
 
+function goBack(){
+  if(current>1){
+    current--;
+    show(current);
+  }
+}
+
+/* swipe */
+let startX=0;
+document.addEventListener("touchstart",e=>{
+  startX=e.touches[0].clientX;
+});
+document.addEventListener("touchend",e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(endX-startX>60) goNext();     // swipe right
+  if(startX-endX>60) goBack();     // swipe left
+});
+
+/* final */
 function finalYes(){
-  show("s6","bg6");
+  show(6);
   confetti();
   hearts(20);
 }
-
 function finalNo(){
   document.getElementById("finalMsg").innerText=
     "You already know my room number 😄";
